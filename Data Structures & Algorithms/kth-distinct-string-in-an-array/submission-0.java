@@ -1,0 +1,22 @@
+class Solution {
+    public String kthDistinct(String[] arr, int k) {
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // Count frequency
+        for (String s : arr) {
+            map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+
+        // Find kth distinct string in original order
+        for (String s : arr) {
+            if (map.get(s) == 1) {
+                k--;
+                if (k == 0) {
+                    return s;
+                }
+            }
+        }
+
+        return "";
+    }
+}
